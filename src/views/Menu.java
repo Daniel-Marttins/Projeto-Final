@@ -1,12 +1,14 @@
 package views;
 
+import inicialization.InitClass;
+
 import javax.swing.*;
 
 public class Menu {
 
     public Menu() { }
 
-    public void startMenu(){
+    public void startMenu(String rootPath, String databasePath){
         Object[] options = {
                 "Entrar Como Estudante",
                 "Entrar Como Professor",
@@ -24,13 +26,12 @@ public class Menu {
                     JOptionPane.INFORMATION_MESSAGE,
                     null,
                     options,
-                    0
+                    null
             );
-
             switch (menuOption) {
                 case 0 -> System.out.println("Login estudante...");
                 case 1 -> System.out.println("Login professor...");
-                case 2 -> System.out.println("Cadastros...");
+                case 2 -> InitClass.InitRegister().selectRegisterType(databasePath);
                 case 3 -> System.out.println("Sobre o sistema...");
                 case 4 -> {
                     System.out.println("Sair...");

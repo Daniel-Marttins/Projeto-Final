@@ -5,11 +5,15 @@ import repositories.StudentRepository;
 
 import java.util.List;
 
+import static forms.StudentForm.initForm;
+
 public class StudentService implements StudentRepository {
+
+    public StudentService() {}
 
     @Override
     public void saveStudent(String file) {
-
+        initForm(file);
     }
 
     @Override
@@ -33,12 +37,9 @@ public class StudentService implements StudentRepository {
     }
 
     @Override
-    public void deleteStudent(String email, String password) {
-
-    }
+    public void deleteStudent(String email, String password) {}
 
     @Override
-    public void deleteStudentTeacher(String file) {
+    public void deleteStudentTeacher(String file) {}
 
-    }
 }
