@@ -5,11 +5,13 @@ import repositories.TeacherRepository;
 
 import java.util.List;
 
+import static forms.TeacherForm.initForm;
+
 public class TeacherService implements TeacherRepository {
 
     @Override
     public void saveTeacher(String file) {
-
+        initForm(file);
     }
 
     @Override

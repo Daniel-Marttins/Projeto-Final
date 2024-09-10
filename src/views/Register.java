@@ -54,6 +54,15 @@ public class Register {
     public void registerTeacher(String databasePath) {
         String pathTeachers = databasePath + "\\teachers";
         String createPath = validAndCreatePath(pathTeachers);
+        switch (createPath) {
+            case "ok", "exists" -> InitStudentService().saveStudent(pathTeachers);
+            case "error" -> JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao criar pasta de professores",
+                    "Erro ao criar pasta",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
     }
 
 
