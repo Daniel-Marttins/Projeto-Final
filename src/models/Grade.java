@@ -60,13 +60,11 @@ public class Grade {
 
     @Override
     public String toString() {
-        return "Grade {" +
-                "id = " + id +
-                ", module = " + module +
-                ", student = " + student +
-                ", room = " + room +
-                ", grade = " + grade +
-                '}'
+        return "[" + module + "] [\n" +
+                    "ID=" + id + "\n" +
+                    "MODULE=" + module + "\n" +
+                    "GRADE=" + grade + "\n" +
+                "]"
         ;
     }
 }

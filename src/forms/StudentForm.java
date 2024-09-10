@@ -35,7 +35,7 @@ public class StudentForm {
 
         PrintWriter writer;
 
-        String studentFile = studentPath + "\\" + email + ".txt";
+        String studentFile = studentPath + "\\" + email + ".ini";
         if(validExistPath(studentFile).equals("exists")) {
             JOptionPane.showMessageDialog(
                     null,
@@ -52,6 +52,12 @@ public class StudentForm {
             writer.close();
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Erro ao criar usuário: [ ERROR ]",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
 
         return student;
