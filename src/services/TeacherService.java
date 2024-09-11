@@ -1,13 +1,22 @@
 package services;
 
+import models.Student;
 import models.Teacher;
+import org.modelmapper.ModelMapper;
 import repositories.TeacherRepository;
 
 import java.util.List;
 
+import static forms.TeacherForm.initFormLogin;
 import static forms.TeacherForm.initForm;
 
 public class TeacherService implements TeacherRepository {
+
+    public TeacherService() {}
+
+    private final ModelMapper modelMapper = new ModelMapper();
+
+    private Teacher teacher;
 
     @Override
     public void saveTeacher(String file) {
@@ -20,8 +29,9 @@ public class TeacherService implements TeacherRepository {
     }
 
     @Override
-    public Teacher getTeacherByLogin(String file) {
-        return null;
+    public void getTeacherByLogin(String file) {
+        Teacher object = initFormLogin(file);
+        if(object != null) teacher = modelMapper.map(object, Teacher.class);
     }
 
     @Override
@@ -35,7 +45,9 @@ public class TeacherService implements TeacherRepository {
     }
 
     @Override
-    public void deleteTeacher(String email, String password) {
+    public void deleteTeacher(String email, String password) {}
 
+    public Teacher getTeacher() {
+        return teacher;
     }
 }

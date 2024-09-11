@@ -41,7 +41,7 @@ public class Register {
         String pathStudents = databasePath + "\\students";
         String createPath = validAndCreatePath(pathStudents);
         switch (createPath) {
-            case "ok", "exists" -> initStudentService().saveStudent(pathStudents);
+            case "created", "exists" -> initStudentService().saveStudent(pathStudents);
             case "error" -> JOptionPane.showMessageDialog(
                     null,
                     "Erro ao pasta de estudantes",
@@ -55,7 +55,7 @@ public class Register {
         String pathTeachers = databasePath + "\\teachers";
         String createPath = validAndCreatePath(pathTeachers);
         switch (createPath) {
-            case "ok", "exists" -> initTeacherService().saveTeacher(pathTeachers);
+            case "created", "exists" -> initTeacherService().saveTeacher(pathTeachers);
             case "error" -> JOptionPane.showMessageDialog(
                     null,
                     "Erro ao criar pasta de professores",

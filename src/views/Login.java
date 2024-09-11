@@ -5,8 +5,7 @@ import models.Student;
 import javax.swing.*;
 
 
-import static inicialization.InitClass.initMenu;
-import static inicialization.InitClass.initStudentService;
+import static inicialization.InitClass.*;
 import static utils.SystemUtils.validAndCreatePath;
 
 public class Login {
@@ -32,6 +31,23 @@ public class Login {
         }
     }
 
-    public void loginTeacher(String databasePath) {}
+    public void loginTeacher(String databasePath) {
+        String pathTeachers = databasePath + "\\teachers";
+        String createPath = validAndCreatePath(pathTeachers);
+        switch (createPath) {
+            case "ok", "exists" -> {
+                initTeacherService().getTeacherByLogin(pathTeachers);
+                if(initTeacherService().getTeacher() != null) {
+                    initMenu().mainMenuTeacher(initTeacherService().getTeacher());
+                }
+            }
+            case "error" -> JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao pasta de professores",
+                    "Erro ao criar pasta",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 
 }
