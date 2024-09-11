@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ini4j-0.5.4" level="project" />
     <orderEntry type="library" name="postgresql-42.7.3" level="project" />
+    <orderEntry type="library" name="modelmapper-3.1.1" level="project" />
+    <orderEntry type="library" name="flatlaf-3.2.5" level="project" />
   </component>
 </module>

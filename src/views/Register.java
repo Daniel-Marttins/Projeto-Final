@@ -1,9 +1,9 @@
 package views;
 
-import inicialization.InitClass;
 import javax.swing.*;
 
-import static inicialization.InitClass.InitStudentService;
+import static inicialization.InitClass.initStudentService;
+import static inicialization.InitClass.initTeacherService;
 import static utils.SystemUtils.validAndCreatePath;
 
 public class Register {
@@ -41,7 +41,7 @@ public class Register {
         String pathStudents = databasePath + "\\students";
         String createPath = validAndCreatePath(pathStudents);
         switch (createPath) {
-            case "ok", "exists" -> InitStudentService().saveStudent(pathStudents);
+            case "ok", "exists" -> initStudentService().saveStudent(pathStudents);
             case "error" -> JOptionPane.showMessageDialog(
                     null,
                     "Erro ao pasta de estudantes",
@@ -55,7 +55,7 @@ public class Register {
         String pathTeachers = databasePath + "\\teachers";
         String createPath = validAndCreatePath(pathTeachers);
         switch (createPath) {
-            case "ok", "exists" -> InitStudentService().saveStudent(pathTeachers);
+            case "ok", "exists" -> initTeacherService().saveTeacher(pathTeachers);
             case "error" -> JOptionPane.showMessageDialog(
                     null,
                     "Erro ao criar pasta de professores",
