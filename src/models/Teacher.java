@@ -7,15 +7,17 @@ public class Teacher {
     private Long id;
     private String name;
     private String email;
+    private String path;
     private String password;
     private List<Room> roomList;
 
     public Teacher() {}
 
-    public Teacher(Long id, String name, String email, String password, List<Room> roomList) {
+    public Teacher(Long id, String name, String email, String path, String password, List<Room> roomList) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.path = path;
         this.password = password;
         this.roomList = roomList;
     }
@@ -40,7 +42,15 @@ public class Teacher {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String email) {
         this.email = email;
     }
 
@@ -66,7 +76,10 @@ public class Teacher {
                 "ID=" + id + "\n" +
                 "NAME=" + name + "\n" +
                 "EMAIL=" + email + "\n" +
-                "PASSWORD=" + password
+                "PATH=" + path + "\n" +
+                "PASSWORD=" + password + "\n\n" +
+                "[ROOMS] \n" +
+                "QUANTITY=0"
         ;
     }
 }

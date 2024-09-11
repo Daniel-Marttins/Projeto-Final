@@ -29,18 +29,20 @@ public class TeacherForm {
         JOptionPane.showConfirmDialog(null, new Object[]{"Informe uma senha: ", passwordField}, "Senha", 0);
         List<Room> rooms = new ArrayList<>();
 
+        String teacherFile = teacherPath + "\\" + email + ".ini";
+
         Teacher teacher = new Teacher(
                 id,
                 name,
                 email,
+                teacherFile,
                 new String(passwordField.getPassword()),
                 rooms
         );
 
         PrintWriter writer;
 
-        String studentFile = teacherPath + "\\" + email + ".ini";
-        if(validExistPath(studentFile).equals("exists")) {
+        if(validExistPath(teacherFile).equals("exists")) {
             JOptionPane.showMessageDialog(
                     null,
                     "O usuário [ " + email + " ] já existe, tente fazer o login!",
@@ -51,7 +53,7 @@ public class TeacherForm {
         }
 
         try {
-            writer = new PrintWriter(studentFile);
+            writer = new PrintWriter(teacherFile);
             writer.println(teacher);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -85,6 +87,7 @@ public class TeacherForm {
                             Long.parseLong(iniReader.get("BASIC INFO", "ID", String.class)),
                             iniReader.get("BASIC INFO", "NAME", String.class),
                             iniReader.get("BASIC INFO", "EMAIL", String.class),
+                            iniReader.get("BASIC INFO", "PATH", String.class),
                             iniReader.get("BASIC INFO", "PASSWORD", String.class),
                             null
                     );

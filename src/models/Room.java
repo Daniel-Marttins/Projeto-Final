@@ -73,14 +73,10 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room {" +
-                "id = " + id +
-                ", name = '" + name + '\'' +
-                ", average = " + average +
-                ", teacher = " + teacher +
-                ", students = " + students +
-                ", grades = " + grades +
-                '}'
+        return "[ROOMS." + name + "] \n" +
+                "ID=" + id + "\n" +
+                "NAME=" + name + "\n" +
+                "AVERAGE=" + average
         ;
     }
 }

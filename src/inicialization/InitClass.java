@@ -5,6 +5,7 @@ import services.TeacherService;
 import views.Login;
 import views.Menu;
 import views.Register;
+import views.TeacherView;
 
 public class InitClass {
 
@@ -48,5 +49,12 @@ public class InitClass {
         return SingletonTeacherService.service;
     }
 
+    // TEACHER VIEW
+    private static class SingletonTeacherView {
+        private static final TeacherView view = new TeacherView();
+    }
+    public static TeacherView initTeacherView() {
+        return SingletonTeacherView.view;
+    }
 
 }

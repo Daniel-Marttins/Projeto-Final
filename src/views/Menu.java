@@ -6,6 +6,8 @@ import models.Teacher;
 
 import javax.swing.*;
 
+import static inicialization.InitClass.initTeacherView;
+
 public class Menu {
 
     public Menu() { }
@@ -80,7 +82,6 @@ public class Menu {
     public void mainMenuTeacher(Teacher teacher) {
         Object[] options = {
                 "Salas",
-                "Matérias",
                 "Avaliações",
                 "Atualizar minhas informações",
                 "Apagar minha conta",
@@ -99,12 +100,11 @@ public class Menu {
                     null
             );
 
-            if(menuOption == 0) System.out.println("Salas");
-            else if(menuOption == 1) System.out.println("Matérias");
-            else if(menuOption == 2) System.out.println("Avaliações");
-            else if(menuOption == 3) System.out.println("Atualizar");
-            else if(menuOption == 4) System.out.println("Deletar");
-            else if(menuOption == 5) break;
+            if(menuOption == 0) initTeacherView().teacherRooms(teacher);
+            else if(menuOption == 1) System.out.println("Avaliações");
+            else if(menuOption == 2) System.out.println("Atualizar");
+            else if(menuOption == 3) System.out.println("Deletar");
+            else if(menuOption == 4) break;
 
         }
 

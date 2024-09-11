@@ -38,7 +38,7 @@ public class Register {
     }
 
     public void registerStudent(String databasePath) {
-        String pathStudents = databasePath + "\\students";
+        String pathStudents = databasePath + "\\" + "students";
         String createPath = validAndCreatePath(pathStudents);
         switch (createPath) {
             case "created", "exists" -> initStudentService().saveStudent(pathStudents);
@@ -52,7 +52,7 @@ public class Register {
     }
 
     public void registerTeacher(String databasePath) {
-        String pathTeachers = databasePath + "\\teachers";
+        String pathTeachers = databasePath + "\\" + "teachers";
         String createPath = validAndCreatePath(pathTeachers);
         switch (createPath) {
             case "created", "exists" -> initTeacherService().saveTeacher(pathTeachers);
