@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static utils.SystemUtils.validExistPath;
+
 public class TeacherView {
 
     public TeacherView() {}
@@ -26,18 +28,53 @@ public class TeacherView {
     FileWriter fileWriter;
     PrintWriter writer;
 
-    public void teacherRooms(Teacher teacher) {
+    public void teacherRooms(Teacher teacher, String path) {
         Object[] options = {
                 "Criar sala",
                 "Ver salas",
+                "Adicionar alunos",
                 "Apagar sala",
                 "Voltar"
         };
 
+        List<String> roomsList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            iniFile = new File(teacher.getPath());
+            iniReader = new Wini(iniFile);
+
+            String validExistsRoom = iniReader.get("ROOMS", "QUANTITY", String.class);
+            if (Integer.parseInt(validExistsRoom) > 0) {
+                int roomCount = 1;
+                for (String sectionName : iniReader.keySet()) {
+                    if (sectionName.startsWith("ROOMS.")) {
+                        String roomName = sectionName.substring("ROOMS.".length());
+                        roomsList.add("[ " + roomCount + " ] " + roomName);
+                        roomCount++;
+                    }
+                }
+
+
+                for (String room : roomsList) {
+                    sb.append(room).append("\n");
+                }
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao acessar o arquivo: \n" + e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+
         while (true) {
             int menuOption = JOptionPane.showOptionDialog(
                     null,
-                    "Menu Salas",
+                    "Menu Salas \n\n" +
+                            "[ Salas Orquestradas ] \n" + sb,
                     "Projeto Final",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,
@@ -48,8 +85,9 @@ public class TeacherView {
 
             if(menuOption == 0) createRoom(teacher);
             else if(menuOption == 1) viewRoom(teacher);
-            else if(menuOption == 2) System.out.println("Deletar");
-            else if(menuOption == 3) break;
+            else if(menuOption == 2) addStudent(teacher, path, sb);
+            else if(menuOption == 3) System.out.println("Deletar");
+            else if(menuOption == 4) break;
         }
 
     }
@@ -163,6 +201,41 @@ public class TeacherView {
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+
+    public void addStudent(Teacher teacher, String path, StringBuilder rooms) {
+        String studentPath = path + "\\" + "students" + "\\" + JOptionPane.showInputDialog(null, "Email do aluno:") + ".ini";
+
+        if(!validExistPath(studentPath).equals("exists")) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Aluno não encontrado",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        String roomOption = JOptionPane.showInputDialog(
+                null,
+                "Em qual matéria deseja adicionar este aluno? \n\n" +
+                        "Insira o nome! \n\n" + rooms
+        );
+
+        try{
+            iniFile = new File(studentPath);
+            iniReader = new Wini(iniFile);
+
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao acessar o arquivo: \n" + e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+
     }
 
 }

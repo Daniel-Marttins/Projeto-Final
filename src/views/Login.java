@@ -38,7 +38,7 @@ public class Login {
             case "ok", "exists" -> {
                 initTeacherService().getTeacherByLogin(pathTeachers);
                 if(initTeacherService().getTeacher() != null) {
-                    initMenu().mainMenuTeacher(initTeacherService().getTeacher());
+                    initMenu().mainMenuTeacher(initTeacherService().getTeacher(), databasePath);
                 }
             }
             case "error" -> JOptionPane.showMessageDialog(

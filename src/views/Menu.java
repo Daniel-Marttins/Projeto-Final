@@ -79,7 +79,7 @@ public class Menu {
 
     }
 
-    public void mainMenuTeacher(Teacher teacher) {
+    public void mainMenuTeacher(Teacher teacher, String databasePath) {
         Object[] options = {
                 "Salas",
                 "Avaliações",
@@ -100,7 +100,7 @@ public class Menu {
                     null
             );
 
-            if(menuOption == 0) initTeacherView().teacherRooms(teacher);
+            if(menuOption == 0) initTeacherView().teacherRooms(teacher, databasePath);
             else if(menuOption == 1) System.out.println("Avaliações");
             else if(menuOption == 2) System.out.println("Atualizar");
             else if(menuOption == 3) System.out.println("Deletar");
